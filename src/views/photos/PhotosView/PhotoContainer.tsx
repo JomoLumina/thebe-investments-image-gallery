@@ -63,7 +63,6 @@ const PhotoContainer: FC<PhotoContainerProps> = ({query}) => {
           let paginatedData = data.response.results;
           const totalPages = floor(data.response.total / perPage);
           const hasMore = page < totalPages;        
-          console.log(data);
           setResponse(prev => ({
             ...prev,
             photos:
@@ -81,7 +80,6 @@ const PhotoContainer: FC<PhotoContainerProps> = ({query}) => {
   useEffect(() => {
     setIsLoading(true);
     fetchPhotos(1, 24); 
-    console.log(window.innerHeight, window.scrollY, document.body.offsetHeight, isLoading);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [fetchPhotos, query]);
 

@@ -81,9 +81,7 @@ export const AuthProvider: FC<AuthProviderProps> = ({ children }) => {
   };
 
   const createUserWithEmailAndPassword = async (email: string, password: string): Promise<any> => {
-    return firebase.auth().createUserWithEmailAndPassword(email, password).then(user => {
-      console.log(user);
-    });
+    return firebase.auth().createUserWithEmailAndPassword(email, password);
   };
 
   const logout = (): Promise<void> => {
