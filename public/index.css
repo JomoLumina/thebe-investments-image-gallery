@@ -1,0 +1,16 @@
+@font-face {
+    font-family: 'jaapokkienhance-regular';
+    src: local('@'), url(static/fonts/web/Jaapokkienchance-Regular.woff) format('woff'),
+                     url(static/fonts/web/jaapokkienchance-regular.ttf) format('truetype'),
+                     url(static/fonts/web/jaapokkienchance-regular.svg) format('svg'),
+                     url(static/fonts/web/jaapokkienchance-regular.eot) format('eot');
+}
+
+.pswp__caption__center{
+    text-align: center !important;    
+    padding: 15px 0 !important;
+}
+
+.pswp__counter, .pswp__caption__center{
+    font-family: "Roboto", "Helvetica", "Arial", sans-serif !important;
+}
