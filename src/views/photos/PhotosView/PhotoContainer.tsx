@@ -1,4 +1,4 @@
-import React, { FC, useCallback, useContext, useEffect, useState } from "react";
+import React, { FC, useCallback, useEffect, useState } from "react";
 import PhotoComponent from "src/components/PhotoComponent";
 import PHOTOS_API from "src/lib/unsplash";
 import Masonry, { ResponsiveMasonry } from "react-responsive-masonry";
