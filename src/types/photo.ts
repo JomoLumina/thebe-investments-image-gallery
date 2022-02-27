@@ -12,8 +12,21 @@ export interface Photo {
   };
   alt_description: string,
   description: string;
+  color: string;
+  likes: number;
+  links:{
+    download: string;
+  }
   user: {
-    username: string;
     name: string;
+    links: {
+      html: string;
+    }
+    profile_image: {
+      large: string;
+      medium: string;
+      small: string;
+    }
+    profile_url: string;
   };
 };

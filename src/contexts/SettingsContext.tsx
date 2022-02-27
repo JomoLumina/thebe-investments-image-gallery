@@ -4,7 +4,7 @@ import React, {
   useState
 } from 'react';
 import type { FC, ReactNode } from 'react';
-import _ from 'lodash';
+import { merge } from 'lodash';
 import { THEMES } from 'src/constants';
 
 interface Settings {
@@ -54,7 +54,7 @@ export const SettingsProvider: FC<SettingsProviderProps> = ({ settings, children
   const [currentSettings, setCurrentSettings] = useState<Settings>(settings || defaultSettings);
 
   const handleSaveSettings = (update: Settings = {}): void => {
-    const mergedSettings = _.merge({}, currentSettings, update);
+    const mergedSettings = merge({}, currentSettings, update);
 
     setCurrentSettings(mergedSettings);
     storeSettings(mergedSettings);

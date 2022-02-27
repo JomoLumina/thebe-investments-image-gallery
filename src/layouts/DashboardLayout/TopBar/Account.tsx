@@ -24,6 +24,10 @@ const useStyles = makeStyles((theme) => ({
   },
   popover: {
     width: 200
+  },
+  username:{
+    fontSize: 14,
+    letterSpacing: -0.05,
   }
 }));
 
@@ -71,6 +75,7 @@ const Account: FC = () => {
           <Typography
             variant="h6"
             color="inherit"
+            className={classes.username}
           >
             {user.name}
           </Typography>
