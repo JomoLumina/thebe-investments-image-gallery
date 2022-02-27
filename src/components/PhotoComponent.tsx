@@ -5,7 +5,7 @@ import "photoswipe/dist/photoswipe.css";
 import "photoswipe/dist/default-skin/default-skin.css";
 import { makeStyles } from "@material-ui/styles";
 import { renderToString } from 'react-dom/server'
-import Logo from "./Logo";
+import PhotoModel from "./PhotoModel";
 
 const useStyles = makeStyles(()=>({
   item:{
@@ -15,16 +15,11 @@ const useStyles = makeStyles(()=>({
 
 const PhotoComponent: React.FC<{ photo: Photo, photoId: number }> = ({ photo, photoId }) => {
   const classes = useStyles();
-  const { urls, width, height, alt_description, description } = photo;
+  const { urls } = photo;
 
-  const logo = renderToString(<Logo />);
+  const modal = renderToString(<PhotoModel photo={photo} />);
   return (
-    <Item
-    original={photo.urls.regular}
-    thumbnail={photo.urls.thumb}
-    width={width}
-    height={height}
-    title={alt_description ?? description}>
+    <Item html={modal}>
       {({ ref, open }) => (
         <img
           key={photoId}
