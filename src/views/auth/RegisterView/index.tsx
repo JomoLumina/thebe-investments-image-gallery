@@ -9,7 +9,9 @@ import {
   Divider,
   Link,
   Typography,
-  makeStyles
+  makeStyles,
+  useMediaQuery,
+  useTheme
 } from '@material-ui/core';
 import type { Theme } from 'src/theme';
 import Page from 'src/components/Page';
@@ -64,6 +66,8 @@ const useStyles = makeStyles((theme: Theme) => ({
 
 const RegisterView: FC = () => {
   const classes = useStyles();
+  const theme = useTheme();
+  const mobileDevice = useMediaQuery(theme.breakpoints.down('sm'));
 
   return (
     <Page
@@ -93,7 +97,7 @@ const RegisterView: FC = () => {
                 <Typography
                   color="textPrimary"
                   gutterBottom
-                  variant="h2"
+                  variant={mobileDevice ? 'h5' : 'h2'}
                 >
                   Register
                 </Typography>

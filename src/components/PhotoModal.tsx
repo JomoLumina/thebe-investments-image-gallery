@@ -5,7 +5,7 @@ import {Box, Container, Typography } from "@material-ui/core";
 import UserInfoButton from "./UserInfoButton";
 import { FavoriteRounded as LikeIcon, GetAppRounded as DownloadIcon } from '@material-ui/icons';
 
-interface PhotoModelProps {
+interface PhotoModalProps {
   photo: Photo;
 }
 const useStyles = makeStyles(()=>({
@@ -84,7 +84,7 @@ const useStyles = makeStyles(()=>({
   }
 }));
 
-const PhotoModel: React.FC<PhotoModelProps> = ({ photo }) => {
+const PhotoModal: React.FC<PhotoModalProps> = ({ photo }) => {
   const classes = useStyles();
   const { id, urls, alt_description, description, user, links, likes } = photo;
 
@@ -125,4 +125,4 @@ const PhotoModel: React.FC<PhotoModelProps> = ({ photo }) => {
     </Container>
   );
 };
-export default PhotoModel
+export default PhotoModal

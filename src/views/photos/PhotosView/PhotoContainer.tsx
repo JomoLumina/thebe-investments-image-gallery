@@ -1,8 +1,9 @@
 import React, { FC, useCallback, useEffect, useState } from "react";
 import PhotoComponent from "src/components/PhotoComponent";
-import PHOTOS_API from "src/lib/unsplash";
+import { Link as RouterLink } from 'react-router-dom';
+import UNSPLASH_API from "src/lib/unsplash";
 import Masonry, { ResponsiveMasonry } from "react-responsive-masonry";
-import { Box, makeStyles } from "@material-ui/core";
+import { Box, Button, makeStyles, Typography, useMediaQuery, useTheme } from "@material-ui/core";
 import LoadingScreen from "src/components/LoadingScreen";
 import { floor } from "lodash";
 import "photoswipe/dist/photoswipe.css";
@@ -17,6 +18,12 @@ const useStyles = makeStyles((theme: Theme) => ({
     [theme.breakpoints.down('xs')]: {
       padding: theme.spacing(0, 3),
     }
+  },
+  image: {
+    maxWidth: '100%',
+    width: 800,
+    maxHeight: 500,
+    height: 'auto'
   }
 }));
 
@@ -26,6 +33,8 @@ interface PhotoContainerProps{
 
 const PhotoContainer: FC<PhotoContainerProps> = ({query}) => {
   const classes = useStyles();
+  const theme = useTheme();
+  const mobileDevice = useMediaQuery(theme.breakpoints.down('sm'));
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [response, setResponse] = useState({
     photos: [],
@@ -38,7 +47,7 @@ const PhotoContainer: FC<PhotoContainerProps> = ({query}) => {
 
   const fetchPhotos = useCallback((page, perPage) => {
     if(query){
-      PHOTOS_API.search.getPhotos({query: query, page: page, perPage: perPage }).then(data => {
+      UNSPLASH_API.search.getPhotos({query: query, page: page, perPage: perPage }).then(data => {
         if (data) {
           setIsLoading(false);
           let paginatedData = data.response.results;
@@ -57,7 +66,7 @@ const PhotoContainer: FC<PhotoContainerProps> = ({query}) => {
         }
       });
     }else{
-      PHOTOS_API.photos.list({ page: page, perPage: perPage }).then(data => {
+      UNSPLASH_API.photos.list({ page: page, perPage: perPage }).then(data => {
         if (data) {
           setIsLoading(false);
           let paginatedData = data.response.results;
@@ -102,15 +111,52 @@ const PhotoContainer: FC<PhotoContainerProps> = ({query}) => {
             </Box>
             : 
             <Box className={classes.scrollable}>
-              <ResponsiveMasonry
-                columnsCountBreakPoints={{420: 1, 540: 2, 900: 3, 1200: 4}}>
-                <Masonry columnsCount={3} gutter="20px">
-                  {response.photos.length &&
-                    response.photos.map((photo, i) => (
-                      <PhotoComponent photo={photo} photoId={i} key={i}/>
-                    ))}
-                </Masonry>
-              </ResponsiveMasonry>
+              {response.photos.length > 0 ? 
+                <ResponsiveMasonry
+                  columnsCountBreakPoints={{420: 1, 540: 2, 900: 3, 1200: 4}}>
+                  <Masonry columnsCount={3} gutter="20px">
+                    {response.photos.length &&
+                      response.photos.map((photo, i) => (
+                        <PhotoComponent photo={photo} photoId={i} key={i}/>
+                      ))}
+                  </Masonry>
+                </ResponsiveMasonry>
+                :<Box>
+                  <Typography
+                    align="center"
+                    variant={mobileDevice ? 'h6' : 'h4'}
+                    style={{color: '#ccc'}}>
+                    Oops!, no results
+                  </Typography>
+                  <Typography
+                    align="center"
+                    style={{color: '#ccc'}}
+                    variant="subtitle2">
+                    Search for <span style={{color: '#8a85ff'}}>`{query}`</span> returned no results,<br/>
+                    Try searching for a more popular keyword or phrase
+                  </Typography>
+                  <Box
+                    mt={6}
+                    display="flex"
+                    justifyContent="center">
+                    <img
+                      alt="nothing found"
+                      className={classes.image}
+                      src="/static/images/nothing.png"/>
+                  </Box>
+                  <Box
+                    display="flex"
+                    justifyContent="center">
+                    <Button
+                      color="secondary"
+                      component={RouterLink}
+                      to="/"
+                      variant="outlined">
+                        Refresh
+                    </Button>
+                  </Box>
+                </Box>
+              }
             </Box>
           }
       </Gallery>
