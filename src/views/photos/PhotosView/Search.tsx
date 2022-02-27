@@ -37,7 +37,10 @@ const useStyles = makeStyles((theme: Theme) => ({
   },
   searchIcon:{
     color: '#fff',
-    fontSize: 42
+    fontSize: 42,
+    [theme.breakpoints.down('xs')]:{
+      fontSize: 32
+    }
   }
 }));
 
