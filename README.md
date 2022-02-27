@@ -2,7 +2,7 @@
 ***By Jomo Lumina***
 
 
-Live Demo:  [Thebe Investment Image Gallery](https://thebe-im-gallery-jomolumina.vercel.app)
+Live Demo:  [Thebe Investment Image Gallery](https://thebe-investments-image-gallery.vercel.app/)
 
 The application login/registration flow uses Firebase authentication API, and allows<br> for user registration with email and password, and also allows for Sign In with <br>your Google Account, or the registered email and password.
 
