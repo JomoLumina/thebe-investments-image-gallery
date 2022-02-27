@@ -46,12 +46,14 @@ const AuthRegister: FC<AuthRegisterProps> = ({ className, ...rest }) => {
         initialValues={{
           email: '',
           password: '',
-          policy: true,
+          passwordConfirmation: '',
           submit: null
         }}
         validationSchema={Yup.object().shape({
           email: Yup.string().email('Must be a valid email address').max(255).required('Email Address is required'),
           password: Yup.string().min(7).max(255).required('Password is required'),
+          passwordConfirmation: Yup.string().required('Confirm Password is required')
+                                  .oneOf([Yup.ref('password'), null], 'Passwords do not match')
         })}
         onSubmit={async (values, {
           setErrors,
@@ -116,11 +118,20 @@ const AuthRegister: FC<AuthRegisterProps> = ({ className, ...rest }) => {
               value={values.password}
               variant="outlined"
             />
-            {Boolean(touched.policy && errors.policy) && (
-              <FormHelperText error>
-                {errors.policy}
-              </FormHelperText>
-            )}
+            
+            <TextField
+              error={Boolean(touched.passwordConfirmation && errors.passwordConfirmation)}
+              fullWidth
+              helperText={touched.passwordConfirmation && errors.passwordConfirmation}
+              label="Confirm Password"
+              margin="normal"
+              name="passwordConfirmation"
+              onBlur={handleBlur}
+              onChange={handleChange}
+              type="password"
+              value={values.passwordConfirmation}
+              variant="outlined"
+            />
             {errors.submit && (
               <Box mt={3}>
                 <FormHelperText error>
