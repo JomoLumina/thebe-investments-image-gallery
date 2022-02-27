@@ -47,7 +47,7 @@ const NotFoundView: FC = () => {
           variant={mobileDevice ? 'h4' : 'h1'}
           color="textPrimary"
         >
-          404: The page you are looking for isn’t here
+          Oops, How did you get here
         </Typography>
         <Typography
           align="center"
@@ -55,7 +55,7 @@ const NotFoundView: FC = () => {
           color="textSecondary"
         >
           You either tried some shady route or you
-          came here by mistake. Whichever it is, try using the navigation.
+          came here by mistake.
         </Typography>
         <Box
           mt={6}
