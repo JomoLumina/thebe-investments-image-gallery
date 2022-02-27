@@ -9,7 +9,9 @@ import {
   Divider,
   Link,
   Typography,
-  makeStyles
+  makeStyles,
+  useMediaQuery,
+  useTheme
 } from '@material-ui/core';
 import type { Theme } from 'src/theme';
 import Page from 'src/components/Page';
@@ -55,7 +57,8 @@ const useStyles = makeStyles((theme: Theme) => ({
 
 const LoginView: FC = () => {
   const classes = useStyles();
-
+  const theme = useTheme();
+  const mobileDevice = useMediaQuery(theme.breakpoints.down('sm'));
   return (
     <Page
       className={classes.root}
@@ -84,7 +87,7 @@ const LoginView: FC = () => {
                 <Typography
                   color="textPrimary"
                   gutterBottom
-                  variant="h2"
+                  variant={mobileDevice ? 'h3' : 'h2'}
                 >
                   Log in
                 </Typography>
