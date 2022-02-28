@@ -33,6 +33,9 @@ const useStyles = makeStyles((theme: Theme) => ({
       right: 24,
       width: 62,
       height: 62,
+    },
+    '&:hover': {
+      backgroundColor: 'rgba(138,133,255, 0.75);',
     }
   },
   searchIcon:{

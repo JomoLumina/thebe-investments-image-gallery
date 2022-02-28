@@ -13,8 +13,6 @@ import { THEMES } from 'src/constants';
 import { strongShadows } from './shadows';
 import typography from './typography';
 
-const background = "/static/images/background.jpg";
-
 interface TypeBackground extends MuiTypeBackground {
   dark: string;
 }
@@ -83,7 +81,7 @@ const themesOptions: ThemeOptions[] = [
       },
       background: {
         default: '#282C34',
-        dark: `url(${background}) 100% 100% no-repeat`,
+        dark: '#1c2025',
         paper: '#282C34',
       },
       primary: {

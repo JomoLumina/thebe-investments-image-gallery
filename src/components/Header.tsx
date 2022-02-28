@@ -21,7 +21,7 @@ const useStyles = makeStyles((theme: Theme) => ({
   headerText: {
     fontFamily: 'jaapokkienhance-regular',
     textAlign: 'center',
-    fontSize: theme.spacing(4),
+    fontSize: theme.spacing(4.2),
     color: '#e6e5e8',
     [theme.breakpoints.down('sm')]: {
       fontSize: theme.spacing(3)
