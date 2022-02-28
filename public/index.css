@@ -14,3 +14,7 @@
 .pswp__counter, .pswp__caption__center{
     font-family: "Roboto", "Helvetica", "Arial", sans-serif !important;
 }
+
+.infinite-scroll-component {
+    overflow-x: hidden !important;
+}
