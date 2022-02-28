@@ -25,7 +25,7 @@ const useStyles = makeStyles(()=>({
 const PhotoComponent: React.FC<{ photo: Photo, photoId: number }> = ({ photo, photoId }) => {
   const classes = useStyles();
   const { urls } = photo;
-  const blurry_query_string = "&fit=crop&h=400&q=10&fm=jpg";
+  const blurry_query_string = "&fit=crop&w=400&q=10&fm=jpg";
 
   const modal = renderToString(<PhotoModal photo={photo} />);
   return (
@@ -37,7 +37,7 @@ const PhotoComponent: React.FC<{ photo: Photo, photoId: number }> = ({ photo, ph
               onClick={open}
               placeholder={urls.raw + blurry_query_string}
               alt={urls.regular}
-              src={urls.regular}
+              src={urls.small}
               className={classes.image}
             />
         )}
