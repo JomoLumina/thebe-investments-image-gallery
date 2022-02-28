@@ -25,6 +25,10 @@ const useStyles = makeStyles((theme: Theme) => ({
     width: 800,
     maxHeight: 500,
     height: 'auto'
+  },
+  endMessage: {
+    color: '#fff',
+    padding: 20,
   }
 }));
 
@@ -127,7 +131,9 @@ const PhotoContainer: FC<PhotoContainerProps> = ({query}) => {
                   hasMore={response.hasMore}
                   loader={<LoadingScreen />}
                   endMessage={
-                    <Typography align="center"> Yep! That's all she wrote</Typography>
+                    <Typography align="center" className={classes.endMessage}> 
+                      Yep! That's all she wrote...
+                    </Typography>
                   }>
                   <ResponsiveMasonry
                     columnsCountBreakPoints={{420: 1, 540: 2, 900: 3, 1200: 4}}>
