@@ -33,8 +33,7 @@ const PhotoComponent: React.FC<{ photo: Photo, photoId: number }> = ({ photo, ph
               onClick={open}
               alt={urls.regular}
               src={urls.regular}
-              className={classes.image}
-            />
+              className={classes.image} />
         )}
       </Item>
   );

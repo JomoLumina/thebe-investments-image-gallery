@@ -16,7 +16,7 @@ import Page from 'src/components/Page';
 import AuthRegister from './AuthRegister';
 import Header from 'src/components/Header';
 
-const background = "/static/images/background.jpg";
+const background = "/static/images/background-2.jpg";
 const icon= "/static/images/react.png";
 
 const useStyles = makeStyles((theme: Theme) => ({

@@ -41,7 +41,7 @@ const PhotoContainer: FC<PhotoContainerProps> = ({query}) => {
   const [response, setResponse] = useState({
     photos: [],
     page: 1,
-    perPage: 32,
+    perPage: 24,
     totalPages: null,
     hasMore: true,
     errors: null
@@ -96,13 +96,13 @@ const PhotoContainer: FC<PhotoContainerProps> = ({query}) => {
   useEffect(() => {
     setIsLoading(true);
     setIsMounted(false);
-    fetchPhotos(1, 32); 
+    fetchPhotos(1, 24); 
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [fetchPhotos, query]);
 
   const fetchMorePhotos = () => {
     setIsLoading(true);
-    fetchPhotos(response.page + 1, 32);
+    fetchPhotos(response.page + 1, 24);
   };
 
  if (response.errors) {
