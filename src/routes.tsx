@@ -8,7 +8,6 @@ import {
   Redirect,
   Route
 } from 'react-router-dom';
-import DashboardLayout from 'src/layouts/DashboardLayout';
 import LoadingScreen from 'src/components/LoadingScreen';
 import AuthGuard from 'src/components/AuthGuard';
 import GuestGuard from 'src/components/GuestGuard';
@@ -17,7 +16,6 @@ type Routes = {
   exact?: boolean;
   path?: string | string[];
   guard?: any;
-  layout?: any;
   component?: any;
   routes?: Routes;
 }[];
@@ -27,7 +25,6 @@ export const renderRoutes = (routes: Routes = []): JSX.Element => (
     <Switch>
       {routes.map((route, i) => {
         const Guard = route.guard || Fragment;
-        const Layout = route.layout || Fragment;
         const Component = route.component;
 
         return (
@@ -37,11 +34,9 @@ export const renderRoutes = (routes: Routes = []): JSX.Element => (
             exact={route.exact}
             render={(props) => (
               <Guard>
-                <Layout>
                   {route.routes
                     ? renderRoutes(route.routes)
                     : <Component {...props} />}
-                </Layout>
               </Guard>
             )}
           />
@@ -72,7 +67,6 @@ const routes: Routes = [
   {
     path: '/app',
     guard: AuthGuard,
-    layout: DashboardLayout,
     routes: [
       {
         exact: true,

@@ -9,18 +9,20 @@ import {
   Divider,
   Link,
   Typography,
-  makeStyles
+  makeStyles,
 } from '@material-ui/core';
 import type { Theme } from 'src/theme';
 import Page from 'src/components/Page';
 import AuthRegister from './AuthRegister';
 import Header from 'src/components/Header';
 
-const icon = "/static/images/react.png";
+const background = "/static/images/background.jpg";
+const icon= "/static/images/react.png";
 
 const useStyles = makeStyles((theme: Theme) => ({
   root: {
-    background: theme.palette.background.dark,
+    background:`url(${background}) no-repeat center center fixed`,
+    backgroundSize: 'cover',
     display: 'flex',
     flexDirection: 'column',
     minHeight: '100vh'
@@ -40,8 +42,8 @@ const useStyles = makeStyles((theme: Theme) => ({
     marginRight: theme.spacing(2)
   },
   cardContainer: {
-    paddingBottom: 80,
-    paddingTop: 80,
+    paddingBottom: 40,
+    paddingTop: 40,
   },
   cardContent: {
     padding: theme.spacing(4),
@@ -93,7 +95,7 @@ const RegisterView: FC = () => {
                 <Typography
                   color="textPrimary"
                   gutterBottom
-                  variant="h2"
+                  variant={'h3'}
                 >
                   Register
                 </Typography>

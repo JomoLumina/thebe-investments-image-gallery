@@ -24,11 +24,9 @@ const history = createBrowserHistory();
 
 const App: FC = () => {
   const { settings } = useSettings();
-
   const theme = createTheme({
     theme: settings.theme
   });
-
   return (
     <ThemeProvider theme={theme}>
       <StylesProvider jss={jss}>
@@ -48,3 +46,4 @@ const App: FC = () => {
 };
 
 export default App;
+
