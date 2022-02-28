@@ -21,10 +21,11 @@ const useStyles = makeStyles((theme: Theme) => ({
   headerText: {
     fontFamily: 'jaapokkienhance-regular',
     textAlign: 'center',
-    fontSize: theme.spacing(4.2),
+    fontSize: theme.spacing(3.75),
     color: '#e6e5e8',
-    [theme.breakpoints.down('sm')]: {
-      fontSize: theme.spacing(3)
+    textTransform:'uppercase',
+    [theme.breakpoints.down('xs')]: {
+      fontSize: theme.spacing(2.25)
     }
   }
 }));
