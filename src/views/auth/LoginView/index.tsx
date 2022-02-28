@@ -10,19 +10,19 @@ import {
   Link,
   Typography,
   makeStyles,
-  useMediaQuery,
-  useTheme
 } from '@material-ui/core';
 import type { Theme } from 'src/theme';
 import Page from 'src/components/Page';
 import AuthLogin from './AuthLogin';
 import Header from 'src/components/Header';
 
+const background = "/static/images/background.jpg";
 const icon= "/static/images/react.png";
 
 const useStyles = makeStyles((theme: Theme) => ({
   root: {
-    background: theme.palette.background.dark,
+    background:`url(${background}) no-repeat center center fixed`,
+    backgroundSize: 'cover',
     display: 'flex',
     flexDirection: 'column',
     minHeight: '100vh'
@@ -33,8 +33,8 @@ const useStyles = makeStyles((theme: Theme) => ({
     marginRight: theme.spacing(2)
   },
   cardContainer: {
-    paddingBottom: 80,
-    paddingTop: 80,
+    paddingBottom: 40,
+    paddingTop: 40,
   },
   cardContent: {
     padding: theme.spacing(4),
@@ -57,8 +57,6 @@ const useStyles = makeStyles((theme: Theme) => ({
 
 const LoginView: FC = () => {
   const classes = useStyles();
-  const theme = useTheme();
-  const mobileDevice = useMediaQuery(theme.breakpoints.down('sm'));
   return (
     <Page
       className={classes.root}
@@ -87,7 +85,7 @@ const LoginView: FC = () => {
                 <Typography
                   color="textPrimary"
                   gutterBottom
-                  variant={mobileDevice ? 'h3' : 'h2'}
+                  variant={'h3'}
                 >
                   Log in
                 </Typography>

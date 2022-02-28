@@ -10,43 +10,25 @@ import Search from './Search';
 import Page from 'src/components/Page';
 import type { Theme } from 'src/theme';
 import PhotoContainer from './PhotoContainer';
+import TopBar from './TopBar';
+
 const useStyles = makeStyles((theme: Theme) => ({
   root: {
     background: `${theme.palette.background.dark}`,
-    backgroundSize: 'cover',
     minHeight: '100vh',
     overflow: 'hidden',
     paddingTop: theme.spacing(3),
     paddingBottom: theme.spacing(3)
   },
-  searchContainer:{
-    padding: theme.spacing(3),
-    position: 'relative'
+  content: {
+    flex: '1 1 auto',
+    height: '100%',
+    overflowY: 'auto',
+    overflowX: 'hidden',
+    paddingTop: 64
   },
-  searchTextField: {
-    '& input': {
-      paddingLeft: theme.spacing(3),
-      paddingRight: theme.spacing(9),
-    },
-    '& fieldset': {
-      borderRadius: '30px',
-    },
-  },
-  searchButton: {
-    backgroundColor: theme.palette.secondary.main,
-    position: 'absolute',
-    right: 10,
-    padding: 12,
-    top: 32,
-    bottom: 0,
-    height: 64,
-    width: 64,
-    cursor: 'pointer',
-    borderRadius: '100%'
-  },
-  searchIcon:{
-    color: '#fff',
-    fontSize: 42
+  topBar:{
+    zIndex: 10
   }
 }));
 
@@ -60,10 +42,10 @@ const AccountView: FC = () => {
   return (
     <Page
       className={classes.root}
-      title="Image Gallery"
-    >
-      <Container maxWidth="lg">
-        <Box mt={3}>
+      title="Photo Gallery">
+      <TopBar className={classes.topBar} />
+      <Container maxWidth="lg" className={classes.content}>
+        <Box>
           <Search searchFn={searchFn} />
         </Box>
         <Divider />
