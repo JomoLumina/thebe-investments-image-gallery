@@ -11,6 +11,7 @@ import Page from 'src/components/Page';
 import type { Theme } from 'src/theme';
 import PhotoContainer from './PhotoContainer';
 import TopBar from './TopBar';
+import ScrollToTop from './ScrollToTop';
 
 const useStyles = makeStyles((theme: Theme) => ({
   root: {
@@ -52,6 +53,7 @@ const AccountView: FC = () => {
         <Box mt={3}>
           <PhotoContainer query={query}/>
         </Box>
+        <ScrollToTop />
       </Container>
     </Page>
   );
