@@ -8,17 +8,19 @@ import {
   Hidden,
   Toolbar,
   makeStyles,
+  Typography,
 } from '@material-ui/core';
 import { THEMES } from 'src/constants';
 import type { Theme } from 'src/theme';
 import Account from './Account';
-import Header from 'src/components/Header';
 import Logo from 'src/components/Logo';
 
 interface TopBarProps {
   className?: string;
   onMobileNavOpen?: () => void;
 }
+
+const headerBackground = '/static/images/headerBackground.png';
 
 const useStyles = makeStyles((theme: Theme) => ({
   root: {
@@ -32,6 +34,23 @@ const useStyles = makeStyles((theme: Theme) => ({
   },
   logoContainer: {
     maxHeight: 64
+  },
+  headerBackground: {
+    alignItems: 'center',
+    background: `url(${headerBackground}) repeat-x 0 80%`,
+    display: 'flex',
+    flexDirection: 'column',
+    height: '100%',
+    justifyContent: 'center',
+    minHeight: '100%',
+    padding: theme.spacing(2)
+  },
+  headerText: {
+    fontFamily: 'jaapokkienhance-regular',
+    textAlign: 'center',
+    fontSize: theme.spacing(3),
+    color: '#e6e5e8',
+    textTransform:'uppercase',
   }
 }));
 
@@ -54,7 +73,15 @@ const TopBar: FC<TopBarProps> = ({
           </Box>
         </Hidden>
         <Hidden xsDown>
-          <Header />
+          <div className={classes.headerBackground}>
+            <Typography
+              color="textPrimary"
+              variant="h1"
+              className={classes.headerText}
+            >
+              Thebe Investment Management
+            </Typography>
+          </div>
         </Hidden>
         <Box
           ml={2}
