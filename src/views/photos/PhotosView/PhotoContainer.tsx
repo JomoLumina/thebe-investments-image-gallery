@@ -51,47 +51,53 @@ const PhotoContainer: FC<PhotoContainerProps> = ({query}) => {
     errors: null
   });
 
-  const fetchPhotos = useCallback((page, perPage) => {
+  const setData = (data: any, page: number, totalPages: number, hasMore: boolean): void => {
+    setIsLoading(false);
+    setIsMounted(true);
+    setResponse(prev => ({
+      ...prev,
+      photos:
+        page === 1
+          ? [...data]
+          : prev.photos.concat([...data]),
+      page,
+      totalPages,
+      hasMore,
+    }));
+
+  }
+
+  const setError = (errors: string[]) => {
+    setIsLoading(false);
+    setResponse(prev => ({
+      ...prev,
+      errors
+    }));
+  } 
+
+  const fetchPhotos = useCallback((page: number, perPage: number): void => {
     if(query){
       UNSPLASH_API.search.getPhotos({query: query, page: page, perPage: perPage }).then(data => {
-        if (data) {
-          setIsLoading(false);
-          setIsMounted(true);
-          let paginatedData = data.response.results;
+        if (data.status === 200) {
+          let paginatedData =  data.response.results;
           const totalPages = data.response.total_pages;
           const hasMore = page < totalPages;
-          console.log(page, totalPages);
-          setResponse(prev => ({
-            ...prev,
-            photos:
-              page === 1
-                ? [...paginatedData]
-                : prev.photos.concat([...paginatedData]),
-            page,
-            totalPages,
-            hasMore,
-          }));
+          setData(paginatedData,page,totalPages,hasMore);
+        }else{
+          setError(data.errors);
         }
       });
     }else{
       UNSPLASH_API.photos.list({ page: page, perPage: perPage }).then(data => {
-        if (data) {
+        if (data.status === 200) {
           setIsLoading(false);
           setIsMounted(true);
           let paginatedData = data.response.results;
           const totalPages = floor(data.response.total / perPage);
           const hasMore = page < totalPages;        
-          console.log(page, totalPages);
-          setResponse(prev => ({
-            ...prev,
-            photos:
-              page === 1
-                ? [...paginatedData]
-                : prev.photos.concat([...paginatedData]),
-            page,
-            totalPages,
-            hasMore,
-          }));
+          setData(paginatedData,page,totalPages,hasMore);
+        }else{
+          setError(data.errors);
         }
       });
     }
@@ -111,9 +117,29 @@ const PhotoContainer: FC<PhotoContainerProps> = ({query}) => {
 
  if (response.errors) {
     return (
-      <div>
-        <div>{response.errors[0]}</div>
-      </div>
+      <Box>
+        <Typography
+          align="center"
+          variant={mobileDevice ? 'h4' : 'h3'}
+          style={{color: '#ccc'}}>
+          Oops!, Something went wrong
+        </Typography>
+        <Typography
+          align="center"
+          style={{color: '#ccc'}}
+          variant="subtitle2">
+            {response.errors[0]}
+        </Typography>
+        <Box
+          mt={6}
+          display="flex"
+          justifyContent="center">
+          <img
+            alt="nothing found"
+            className={classes.image}
+            src="/static/images/undraw_server_down_s4lk.svg"/>
+        </Box>
+      </Box>
     );
   } else {
     return (
@@ -166,7 +192,7 @@ const PhotoContainer: FC<PhotoContainerProps> = ({query}) => {
                     <img
                       alt="nothing found"
                       className={classes.image}
-                      src="/static/images/nothing.png"/>
+                      src="/static/images/undraw_empty_xct9.svg"/>
                   </Box>
                   <Box
                     display="flex"
